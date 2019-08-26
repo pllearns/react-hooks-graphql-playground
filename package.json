@@ -1,0 +1,29 @@
+{
+  "name": "react-hooks-graphql-exercise",
+  "version": "1.0.0",
+  "description": "Simple exercise to integrate graphql with react hooks",
+  "main": "server.js",
+  "author": "Phillip Lorenzo",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:client": "webpack",
+    "build:server": "babel src -d lib --copy-files",
+    "prebuild": "rm -rf build lib",
+    "build": "npm run build:server && npm run build:client",
+    "start": "node ./lib/index.js",
+    "watch:client": "webpack --watch",
+    "watch:server": "nodemon --watch src --ignore src/client --exec \"npm run build:server && npm run start | pino-pretty\"",
+    "prewatch": "npm run prebuild",
+    "watch": "npm run build:client && npm run watch:server & npm run watch:client"
+  },
+  "private": false,
+  "dependencies": {
+    "fastify": "^2.7.1",
+    "fastify-gql": "^1.4.0",
+    "fastify-static": "^2.5.0"
+  },
+  "devDependencies": {
+    "webpack": "^4.39.2"
+  }
+}
